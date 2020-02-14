@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/classify/classify",
+    "pages/home/home",
+    "pages/index/index",
+    "pages/note/note",
+    "pages/ppts/ppts",
+    "pages/point/point",
+    "pages/note/addnote"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "亦师",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "0xffffff",
+    "selectedColor": "#1296DB",
+    "borderStyle": "black",
+    "list": [
+      {
+        "text": "推荐",
+        "iconPath": "images/icon/recommend.png",
+        "selectedIconPath": "images/icon/select/s_recommend.png",
+        "pagePath": "pages/home/home"
+      },
+      {
+        "text": "分类",
+        "iconPath": "images/icon/category.png",
+        "selectedIconPath": "images/icon/select/s_category.png",
+        "pagePath": "pages/classify/classify"
+      },
+      {
+        "text": "我的",
+        "iconPath": "images/icon/my.png",
+        "selectedIconPath": "images/icon/select/s_my.png",
+        "pagePath": "pages/index/index"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

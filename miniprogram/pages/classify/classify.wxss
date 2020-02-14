@@ -1,0 +1,58 @@
+/* miniprogram/pages/classify/classify.wxss */
+.search{
+  width: 98%;
+  padding: 15px 0px;
+}
+.search_arr {
+  border: 1px solid #d0d0d0;
+  border-radius: 30rpx;
+  margin-left: 20rpx;
+}
+.search_arr input{
+  margin-left: 60rpx;
+  height: 60rpx;
+  border-radius: 5px;
+}
+.sousuo {
+  padding-left: 38%;
+  width: 15%;
+  line-height: 150%;
+  text-align: center;
+}
+.page_row{
+  display: flex;
+  flex-direction: row
+}
+.searchcion {
+  margin: 10rpx 10rpx 10rpx 10rpx;
+  position: absolute;
+  margin-left:38%;
+  z-index: 2;
+  width: 15px;
+  height: 15px;
+  text-align: center;
+}
+.cont{
+  display: flex;
+  flex-direction: row;
+}
+.left{
+  text-align: center;
+  width: 26%;
+}
+.right{
+  display: flex;
+  flex-direction: column;
+  width: 74%;
+}
+.left-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+}
+.right-cont{
+  display: flex;
+  height: 150px;
+}

@@ -1,0 +1,24 @@
+<!--miniprogram/pages/note/note.wxml-->
+<view class="search">
+  <view class="df search_arr">
+    <icon class="searchcion" size='16' type='search'></icon>
+    <input class="sousuo" disabled placeholder="搜索" bindtap='search' />
+  </view>
+</view>
+<button bindtap="add">
+  add
+</button>
+<button bindtap="getUserNote">get</button>
+<view class="" hover-class="none" hover-stop-propagation="false" wx:for="{{note_list}}" wx:key="item">
+  <view>
+    {{item.title}}
+  </view>
+  <view>
+    {{item.description}}
+  </view>
+  <view>
+    {{item.createTime}}
+  </view>
+    
+      
+</view>

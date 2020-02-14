@@ -1,0 +1,26 @@
+<!--miniprogram/pages/classify/classify.wxml-->
+<view class="search">
+  <view class="df search_arr">
+    <icon class="searchcion" size='16' type='search'></icon>
+    <input class="sousuo" disabled placeholder="搜索" bindtap='search' />
+  </view>
+</view>
+<view class="cont">
+  <view class="left">
+    <view class="left-cont" wx:for="{{leftlist}}" wx:key="item" bindtap="selectTo" style="color:{{item.color}}" data-id="item.id">
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <view class="right">
+    <view class="right-cont">
+      <text>资源类别</text>
+      
+    </view>
+    <view class="right-cont">
+      <text>教材</text>
+    </view>
+    <view class="right-cont">
+      <text>试题试卷</text>
+    </view>
+  </view>
+</view>
