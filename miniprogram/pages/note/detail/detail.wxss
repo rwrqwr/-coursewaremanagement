@@ -1,7 +1,9 @@
 /* miniprogram/pages/note/addnote.wxss */
-@import "../../style/weui.wxss";
-@import "./assets/iconfont.wxss";
-
+@import "../../../style/weui.wxss";
+@import "../assets/iconfont.wxss";
+page{
+  background: #ffffff;
+}
 .container {
   width: 100%;
 }

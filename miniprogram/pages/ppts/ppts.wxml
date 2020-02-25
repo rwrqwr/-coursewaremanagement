@@ -1,2 +1,8 @@
 <!--miniprogram/pages/ppts/ppts.wxml-->
-<text>miniprogram/pages/ppts/ppts.wxml</text>
+<button class="default" type="primary" bindtap="upLoad">
+	上传文件
+</button>
+<button class="default" type="primary" bindtap="chooseFile">
+	上传
+</button>
+

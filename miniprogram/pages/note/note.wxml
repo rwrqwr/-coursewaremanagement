@@ -1,24 +1,46 @@
 <!--miniprogram/pages/note/note.wxml-->
 <view class="search">
-  <view class="df search_arr">
-    <icon class="searchcion" size='16' type='search'></icon>
-    <input class="sousuo" disabled placeholder="搜索" bindtap='search' />
-  </view>
+	<view class="df search_arr">
+		<icon class="searchcion" size='16' type='search' />
+		<input
+		 class="sousuo"
+		 disabled
+		 placeholder="搜索"
+		 bindtap='search'
+		/>
+	</view>
 </view>
-<button bindtap="add">
-  add
-</button>
-<button bindtap="getUserNote">get</button>
-<view class="" hover-class="none" hover-stop-propagation="false" wx:for="{{note_list}}" wx:key="item">
-  <view>
-    {{item.title}}
-  </view>
-  <view>
-    {{item.description}}
-  </view>
-  <view>
-    {{item.createTime}}
-  </view>
-    
-      
+
+<view
+ class=""
+ hover-class="none"
+ hover-stop-propagation="false"
+ wx:for="{{note_list}}"
+ wx:key="item"
+>
+
+	<view class="note-list">
+		<navigator
+		 class=""
+		 target=""
+		 url="detail/detail?id={{item._id}}"
+		 hover-class="navigator-hover"
+		 open-type="navigate"
+		>
+			<view class="note-title" hover-class="none" hover-stop-propagation="false">
+				{{item.title}}
+			</view>
+			<view class="note-time" hover-class="none" hover-stop-propagation="false">
+				{{item.createTime}}
+			</view>
+		</navigator>
+	</view>
 </view>
+<view class="note-add">
+	<view class="" hover-class="none" hover-stop-propagation="false">
+		<navigator url="addnote">
+			新建
+		</navigator>
+	</view>
+</view>
+

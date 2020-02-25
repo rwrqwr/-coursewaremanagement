@@ -1,48 +1,15 @@
-// miniprogram/pages/note/addnote.js
-var util = require('../../utils/getTime.js');
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    formats: {},
-    readOnly: false,
-    placeholder: '开始输入...',
-    editorHeight: 300,
-    keyboardHeight: 0,
-    isIOS: false
+    noteId:'',
+    note: [],
+    title: ''
   },
 
-  sub: function(e){
-    var inp = e.detail.value;
-    var db = wx.cloud.database({});
-    this.editorCtx.getContents({
-			success(res) {
-          console.log(res);
-          db.collection('note').add({
-            // data 字段表示需新增的 JSON 数据
-            data: {
-              // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
-              title: inp.title,
-              createTime: util.formatTime(new Date()),
-              content:res
-            },
-            success(res) {
-              // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-              console.log(res)
-            }
-          }) 
-        }
-			})
-  },
+  
+  onLoad (options) {
 
-  readOnlyChange() {
-    this.setData({
-      readOnly: !this.data.readOnly
-    })
-  },
-  onLoad() {
     const platform = wx.getSystemInfoSync().platform
     const isIOS = platform === 'ios'
     this.setData({ isIOS})
@@ -63,6 +30,38 @@ Page({
         })
       }, duration)
 
+    })
+
+    var db = wx.cloud.database({});
+    db.collection('note').where({
+      _id : options.id,
+    }).get({
+      success: res=>{
+        that.setData({
+          title: res.data[0].title,
+          noteId: options.id
+        })
+        that.editorCtx.setContents({
+          html: res.data[0].content.html,
+          success: (res) =>{
+            console.log('success')
+          },
+          fail: res=>{
+            console.log('fail')
+          }
+        }) 
+      },
+      fail: res=>{
+        console.log(fail)
+      }
+    })
+    
+  },
+
+  
+  readOnlyChange() {
+    this.setData({
+      readOnly: !this.data.readOnly
     })
   },
   updatePosition(keyboardHeight) {
@@ -121,5 +120,34 @@ Page({
     this.editorCtx.insertText({
       text: formatDate
     })
+  },
+  
+  sub(e){
+    const that = this;
+    var inp = e.detail.value;
+    var db = wx.cloud.database({});
+    this.editorCtx.getContents({
+			success(res) {
+
+          db.collection('note').doc(that.data.noteId).update({
+            data: {
+              title: inp.title,
+              content:res
+            }
+          })
+          .then((res) => {
+              console.log('update success');
+          });
+
+        }
+      })
+      var pages = getCurrentPages();
+    if (pages.length > 1) {
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      //关键在这里
+      prePage.getNoteList();
+    } 
+      wx.navigateBack({ changed: true });
   }
 })

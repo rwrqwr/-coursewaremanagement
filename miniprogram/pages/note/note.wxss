@@ -1,10 +1,14 @@
 /* miniprogram/pages/note/note.wxss */
+page{
+  background: #ffffff;
+}
+/* 搜索框 */
 .search{
   width: 98%;
   padding: 15px 0px;
 }
 .search_arr {
-  border: 1px solid #ffffff;
+  border: 1px solid #f6f8fa;
   border-radius: 30rpx;
   margin-left: 20rpx;
 }
@@ -19,6 +23,27 @@
   line-height: 150%;
   text-align: center;
 }
+
+/* note细节 */
+.note-list{
+  margin-top: 10px;
+  width: 80%;
+  margin-left: 10%;
+  border-bottom: 1px solid #f6f8fa;
+  justify-content: center;
+}
+.note-time{
+  color: #cbcfd2;
+  font-size: 13px;
+}
+.note-add{
+  position: fixed;
+  width: 100%;
+  display: flex;
+  bottom: 0px;
+  justify-content: center;
+}
+/* note细节 */
 .page_row{
   display: flex;
   flex-direction: row
