@@ -15,8 +15,8 @@ Page({
   },
 
   sub: function(e){
-    var inp = e.detail.value;
-    var db = wx.cloud.database({});
+    const inp = e.detail.value;
+    const db = wx.cloud.database({});
     this.editorCtx.getContents({
 			success(res) {
           console.log(res);
@@ -34,7 +34,8 @@ Page({
             }
           }) 
         }
-			})
+      })
+      wx.navigateBack({ changed: true });
   },
 
   readOnlyChange() {

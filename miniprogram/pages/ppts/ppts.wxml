@@ -2,7 +2,13 @@
 <button class="default" type="primary" bindtap="upLoad">
 	上传文件
 </button>
-<button class="default" type="primary" bindtap="chooseFile">
-	上传
-</button>
+<navigator
+ class=""
+ target=""
+ url="addPpts/addPpts"
+ hover-class="navigator-hover"
+ open-type="navigate"
+>
+	点击上传课件
+</navigator>
 

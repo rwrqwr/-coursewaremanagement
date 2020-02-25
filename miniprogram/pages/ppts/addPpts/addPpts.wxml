@@ -1,0 +1,32 @@
+<!--miniprogram/pages/ppts/addPpts/addPpts.wxml-->
+
+<button class="default" type="primary" bindtap="chooseFile">
+	选择文件
+</button>
+<form
+ class=""
+ report-submit="false"
+ bindsubmit="sub"
+ bindreset=""
+>
+	<view wx:if="{{number != 0}}">
+		总共上传了 {{number}} 个文件
+		<view>
+			分别为
+		</view>
+		<view
+		 class=""
+		 wx:for="{{file}}"
+		 wx:for-item="item"
+		 wx:for-index="num"
+		 wx:key="i"
+		>
+			{{item.name}}
+			<input class="" name="d{{num}}" type="text" />
+		</view>
+		<button form-type="submit">
+			确定
+		</button>
+	</view>
+</form>
+
