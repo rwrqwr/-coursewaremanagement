@@ -141,7 +141,24 @@ Page({
 
         }
       })
-      var pages = getCurrentPages();
+    var pages = getCurrentPages();
+    if (pages.length > 1) {
+      //上一个页面实例对象
+      var prePage = pages[pages.length - 2];
+      //关键在这里
+      prePage.getNoteList();
+    } 
+      wx.navigateBack({ changed: true });
+  },
+  del: function(){
+    var db = wx.cloud.database();
+    const that = this;
+    db.collection('note').doc(that.data.noteId).remove({
+      success: res=>{
+        console.log('delete success')
+      }
+    });
+    var pages = getCurrentPages();
     if (pages.length > 1) {
       //上一个页面实例对象
       var prePage = pages[pages.length - 2];

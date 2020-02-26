@@ -1,14 +1,6 @@
 <!--miniprogram/pages/note/note.wxml-->
 <view class="search">
-	<view class="df search_arr">
-		<icon class="searchcion" size='16' type='search' />
-		<input
-		 class="sousuo"
-		 disabled
-		 placeholder="搜索"
-		 bindtap='search'
-		/>
-	</view>
+	<mp-searchbar bindselectresult="selectResult" search="{{search}}" />
 </view>
 
 <view

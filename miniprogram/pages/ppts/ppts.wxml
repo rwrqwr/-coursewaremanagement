@@ -1,7 +1,23 @@
 <!--miniprogram/pages/ppts/ppts.wxml-->
-<button class="default" type="primary" bindtap="upLoad">
-	上传文件
-</button>
+<view class="" hover-class="none" hover-stop-propagation="false">
+	<view
+	 class=""
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	 wx:for="{{pptList}}"
+	 wx:key="i"
+	 wx:item="item"
+	>
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			<icon class="iconfont icon-PPT" size="27" color="" />
+			文件名：{{item.name}}
+		</view>
+
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			文件描述：{{item.description}}
+		</view>
+	</view>
+</view>
 <navigator
  class=""
  target=""

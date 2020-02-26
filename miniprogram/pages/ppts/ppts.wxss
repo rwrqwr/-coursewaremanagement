@@ -1,1 +1,2 @@
 /* miniprogram/pages/ppts/ppts.wxss */
+@import "../../style/iconfont.wxss";

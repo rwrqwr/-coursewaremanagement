@@ -20,7 +20,7 @@ Page({
     const that = this;
     wx.chooseMessageFile({
       count: 10,
-      type: 'all',
+      type: 'file',
       success(res) {
         // tempFilePath可以作为img标签的src属性显示图片
         const openId = wx.getStorageSync('openid');
@@ -43,12 +43,11 @@ Page({
     console.log(val);
     let description = [];
     let i = 0;
-    for(let key in val){
+    for (let key in val) {
       description[i] = val[key];
       i++;
     }
     that.data.file.forEach((element, index) => {
-      
 
       console.log('description:::' + description[index])
       wx.cloud.uploadFile({
@@ -64,7 +63,15 @@ Page({
             file_id: res.fileID
           },
           success(res) {
-            console.log(res)
+            //确定后返回上层
+            var pages = getCurrentPages();
+            if (pages.length > 1) {
+              //上一个页面实例对象
+              var prePage = pages[pages.length - 2];
+              prePage.getNoteList();
+            }
+            wx.navigateBack({ changed: true });
+
           }
         })
       }).catch(err => {
@@ -72,7 +79,6 @@ Page({
       })
     });
 
-    wx.navigateBack({ changed: true });
 
   }
 })

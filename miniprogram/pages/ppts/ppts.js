@@ -5,21 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    pptList:[]
   },
  
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onLoad: function () {
+    const that = this;
+    let openid = wx.getStorageSync('openid');
+    var db = wx.cloud.database({});
+    db.collection('file').where({
+      _openid: openid
+    }).get({
+      success: res=>{
+        console.log(res.data);
+        that.setData({
+          pptList: res.data
+        })
+      }
+    });
   },
   upLoad: function(){
     const that = this;
@@ -42,6 +44,21 @@ Page({
           console.log('upload fail, err = ' + err)
         })
       },
+    })
+  },
+  getPpts: function(){
+    const that = this;
+    let openid = wx.getStorageSync('openid');
+    var db = wx.cloud.database({});
+    db.collection('file').where({
+      _openid: openid
+    }).get({
+      success: res=>{
+        console.log('success: '+res.data);
+        that.setData({
+          pptList: res.data
+        })
+      }
     })
   }
 })

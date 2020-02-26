@@ -14,28 +14,36 @@ Page({
     isIOS: false
   },
 
-  sub: function(e){
+  sub: function (e) {
     const inp = e.detail.value;
     const db = wx.cloud.database({});
     this.editorCtx.getContents({
-			success(res) {
-          console.log(res);
-          db.collection('note').add({
-            // data 字段表示需新增的 JSON 数据
-            data: {
-              // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
-              title: inp.title,
-              createTime: util.formatTime(new Date()),
-              content:res
-            },
-            success(res) {
-              // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
-              console.log(res)
+      success(res) {
+        console.log(res);
+        db.collection('note').add({
+          // data 字段表示需新增的 JSON 数据
+          data: {
+            // _id: 'todo-identifiant-aleatoire', // 可选自定义 _id，在此处场景下用数据库自动分配的就可以了
+            title: inp.title,
+            createTime: util.formatTime(new Date()),
+            content: res
+          },
+          success(res) {
+            
+            //成功后刷新前一个页面 返回前一个页面
+            var pages = getCurrentPages();
+            if (pages.length > 1) {
+              //上一个页面实例对象
+              var prePage = pages[pages.length - 2];
+              
+              prePage.getNoteList();
             }
-          }) 
-        }
-      })
-      wx.navigateBack({ changed: true });
+            wx.navigateBack({ changed: true });
+          }
+        })
+      }
+    })
+
   },
 
   readOnlyChange() {
@@ -46,7 +54,7 @@ Page({
   onLoad() {
     const platform = wx.getSystemInfoSync().platform
     const isIOS = platform === 'ios'
-    this.setData({ isIOS})
+    this.setData({ isIOS })
     const that = this
     this.updatePosition(0)
     let keyboardHeight = 0

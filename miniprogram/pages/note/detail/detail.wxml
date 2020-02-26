@@ -33,6 +33,9 @@
 		<button form-type="submit">
 			确定
 		</button>
+		<button bindtap = "del">
+			确定
+		</button>
 	</view>
 
 </form>
