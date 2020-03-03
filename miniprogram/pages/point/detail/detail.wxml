@@ -1,3 +1,4 @@
+<!--miniprogram/pages/point/detail/detail.wxml-->
 <form
  class="s"
  report-submit="false"
@@ -9,6 +10,7 @@
 	</view>
 	<view class="" hover-class="none" hover-stop-propagation="false">
 		<view class="toolbar" catchtouchend="format">
+			<i class="iconfont icon-charutupian" catchtouchend="insertImage" />
 			<i class="iconfont icon-format-header-2 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}" />
 			<i class="iconfont icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}" />
 			<i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold" />
@@ -33,7 +35,7 @@
 		<button form-type="submit">
 			确定
 		</button>
-		<button bindtap = "del">
+		<button bindtap="del">
 			删除
 		</button>
 	</view>

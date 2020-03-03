@@ -1,37 +1,5 @@
 /* miniprogram/pages/home/home.wxss */
-.search{
-  width: 98%;
-  padding: 15px 0px;
-}
-.search_arr {
-  border: 1px solid #d0d0d0;
-  border-radius: 30rpx;
-  margin-left: 20rpx;
-}
-.search_arr input{
-  margin-left: 60rpx;
-  height: 60rpx;
-  border-radius: 5px;
-}
-.sousuo {
-  padding-left: 38%;
-  width: 15%;
-  line-height: 150%;
-  text-align: center;
-}
-.page_row{
-  display: flex;
-  flex-direction: row
-}
-.searchcion {
-  margin: 10rpx 10rpx 10rpx 10rpx;
-  position: absolute;
-  margin-left:38%;
-  z-index: 2;
-  width: 15px;
-  height: 15px;
-  text-align: center;
-}
+
 .img-pos{
   padding: 15px 10px;
 }

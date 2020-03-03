@@ -1,6 +1,9 @@
-
+// miniprogram/pages/point/detail/detail.js
 Page({
 
+  /**
+   * 页面的初始数据
+   */
   data: {
     noteId:'',
     note: [],
@@ -33,7 +36,7 @@ Page({
     })
 
     var db = wx.cloud.database({});
-    db.collection('note').where({
+    db.collection('point').where({
       _id : options.id,
     }).get({
       success: res=>{
@@ -121,7 +124,33 @@ Page({
       text: formatDate
     })
   },
-  
+  insertImage() {
+    const that = this;
+    const openid = wx.getStorageSync('openid');
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: function (chooseResult) {
+        console.log('filename = ' + JSON.stringify(chooseResult.tempFiles[0]))
+        var obj = chooseResult.tempFiles[0].path.lastIndexOf("/");
+        
+        wx.cloud.uploadFile({
+          cloudPath: 'img/'+ openid + '/' + chooseResult.tempFiles[0].path.substr(obj + 1),
+          filePath: chooseResult.tempFilePaths[0]
+        }).then(res => {
+          console.log('upload success, res = ' + JSON.stringify(res));
+          that.editorCtx.insertImage({
+            src: res.fileID,
+            width: '80%',
+            success: function () {
+              console.log('insert image success')
+            }
+          })
+        })
+      },
+    })
+  },
   sub(e){
     const that = this;
     var inp = e.detail.value;
@@ -129,7 +158,7 @@ Page({
     this.editorCtx.getContents({
 			success(res) {
 
-          db.collection('note').doc(that.data.noteId).update({
+          db.collection('point').doc(that.data.noteId).update({
             data: {
               title: inp.title,
               content:res
@@ -146,14 +175,14 @@ Page({
       //上一个页面实例对象
       var prePage = pages[pages.length - 2];
       //关键在这里
-      prePage.getNoteList();
+      prePage.getPointList();
     } 
       wx.navigateBack();
   },
   del: function(){
     var db = wx.cloud.database();
     const that = this;
-    db.collection('note').doc(that.data.noteId).remove({
+    db.collection('point').doc(that.data.noteId).remove({
       success: res=>{
         console.log('delete success')
       }

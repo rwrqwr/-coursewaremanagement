@@ -19,7 +19,6 @@ Page({
     const db = wx.cloud.database({});
     this.editorCtx.getContents({
       success(res) {
-        console.log(res);
         db.collection('note').add({
           // data 字段表示需新增的 JSON 数据
           data: {
@@ -27,20 +26,28 @@ Page({
             title: inp.title,
             createTime: util.formatTime(new Date()),
             content: res
-          },
-          success(res) {
-            
-            //成功后刷新前一个页面 返回前一个页面
+          }
+        }).then((res) => {
+          wx.showToast({
+            title: '添加成功'
+          })
+
+
+          setTimeout(function () {
             var pages = getCurrentPages();
             if (pages.length > 1) {
               //上一个页面实例对象
               var prePage = pages[pages.length - 2];
-              
+              prePage.setData({
+                note_list: []
+              })
               prePage.getNoteList();
             }
-            wx.navigateBack({ changed: true });
-          }
-        })
+            wx.navigateBack();
+          }, 1000)
+
+        }
+        )
       }
     })
 

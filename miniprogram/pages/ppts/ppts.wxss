@@ -1,2 +1,82 @@
 /* miniprogram/pages/ppts/ppts.wxss */
-@import "../../style/iconfont.wxss";
+
+@import "../../style/iconfont-weapp-icon.wxss";
+.add-menu{
+    height: 30px;
+    width: 30px;
+    background-color: #ffffff;
+    background-size: 30px 30px;
+    background-repeat:no-repeat;
+    position: absolute;
+    right: 0px;
+}
+.add-menu image{
+    height: 30px;
+    width: 30px;
+}
+.menu{
+    display: flex;
+}
+movable-view{
+    width: 100vw;
+    height: 120rpx; 
+    z-index: 999;
+    background: #fff;
+}
+movable-area{
+    width: calc(100vw - 120rpx);
+    height: 120rpx; 
+}
+.delete-btn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0; 
+    width: 120rpx;
+    font-family: PingFangSC-Regular;
+    font-size: 24rpx;
+    color: #FFFFFF;
+    line-height: 120rpx;
+    z-index: 1;
+    background: #E66671;
+    text-align: center;
+}
+.item{
+    position: relative;
+    width: 100vw;
+    border-bottom: 2rpx solid #E9E9E9;
+    box-sizing: border-box;
+    background: #fff;
+}
+.item-det{
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    height: 120rpx;
+}
+.navi-item{
+    height: 120rpx;
+}
+.navi-view{
+    height: 120rpx;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+}
+.addm{
+    display: flex;
+}
+.addm input{
+    height: 30px;
+    width: 90vw;
+}
+.add-ppt{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.add-ppt navigator{
+    font-size: 17px;
+}
+

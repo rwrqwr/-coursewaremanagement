@@ -1,30 +1,125 @@
 <!--miniprogram/pages/ppts/ppts.wxml-->
-<view class="" hover-class="none" hover-stop-propagation="false">
+<view class="search">
+	<mp-searchbar
+	 bindselectresult="selectResult"
+	 search="{{search}}"
+	 bindinput="searchInput"
+	 bindfocus="searchStat"
+	 bindcancel="searchCancel"
+	 placeholder="请输入文件名"
+	/>
+</view>
+<view
+ class=""
+ hover-class="none"
+ hover-stop-propagation="false"
+ hidden="{{!searchState}}"
+>
+	<view class="" hover-class="none" hover-stop-propagation="false">
+		<!-- 菜单 -->
+		<view class="menu">
+			<view wx:for="{{menu.menu}}" wx:item:="item" wx:key="*this">
+				<navigator
+				 class=""
+				 url="./ppts?id={{item.id}}&&menuLevel={{index+1}}"
+				 hover-class="navigator-hover"
+				 open-type="navigateBack"
+				>
+					{{item.name}}/
+				</navigator>
+			</view>
+		</view>
+		<!-- 文件夹 -->
+		<view class="addm" hover-class="none">
+			<input maxlength="20" bindinput="menuinput" value="{{menu.menuName}}" />
+			<view bindtap="addMenu" class="add-menu">
+				<image src="../../images/icon/增加.png" />
+			</view>
+		</view>
+		<view class="list">
+
+			<view class="item" wx:for="{{menu.folder}}" wx:key="*this">
+				<movable-area class="" scale-area="false">
+					<movable-view
+					 out-of-bounds="true"
+					 direction="horizontal"
+					 x="{{item.xmove}}"
+					 inertia="true"
+					 data-productIndex="{{index}}"
+					 bindtouchstart="handleTouchStart"
+					 bindtouchend="handleTouchEnd"
+					 bindchange="handleMovableChange"
+					>
+						<view class="item-det">
+							<navigator
+							 class="navi-item"
+							 target=""
+							 url="./ppts?id={{item._id}}&&menuLevel={{menu.menuLevel+1}}"
+							 hover-class="navigator-hover"
+							 open-type="navigate"
+							>
+								<view class="navi-view">
+									<icon class="t-icon t-icon-file_icon" size="23" />
+									{{item.menuName}}
+								</view>
+
+							</navigator>
+						</view>
+					</movable-view>
+				</movable-area>
+				<view class="delete-btn" data-id="{{item._id}}" bindtap="handleDeleteProduct">删除</view>
+			</view>
+
+		</view>
+	</view>
 	<view
 	 class=""
 	 hover-class="none"
 	 hover-stop-propagation="false"
 	 wx:for="{{pptList}}"
-	 wx:key="i"
+	 wx:key="*this"
 	 wx:item="item"
 	>
 		<view class="" hover-class="none" hover-stop-propagation="false">
-			<icon class="iconfont icon-PPT" size="27" color="" />
-			文件名：{{item.name}}
+			<icon class="t-icon {{pptClass[index]}}" size="27" color="" />
+
+			<view
+			 bindtap="viewFile"
+			 data-id="{{item.file_id}}"
+			 class=""
+			 hover-class="none"
+			 hover-stop-propagation="false"
+			>
+				<view>
+					文件名：{{item.name}}
+				</view>
+				<view>
+					文件描述：{{item.description}}
+				</view>
+				<view wx:if="{{item.share}}">
+					已分享
+				</view>
+				<view wx:if="{{!item.share}}">
+					未分享
+				</view>
+			</view>
 		</view>
 
-		<view class="" hover-class="none" hover-stop-propagation="false">
-			文件描述：{{item.description}}
-		</view>
+		<button bindtap="deleteFile" data-id="{{item._id}}" data-fileId="{{item.file_id}}">
+			删除文件
+		</button>
 	</view>
+	<view class = "add-ppt">
+		<navigator
+		 class=""
+		 target=""
+		 url="addPpts/addPpts?id={{menu.menuId}}"
+		 hover-class="navigator-hover"
+		 open-type="navigate"
+		>
+			点击上传课件
+		</navigator>
+	</view>
+
 </view>
-<navigator
- class=""
- target=""
- url="addPpts/addPpts"
- hover-class="navigator-hover"
- open-type="navigate"
->
-	点击上传课件
-</navigator>
 

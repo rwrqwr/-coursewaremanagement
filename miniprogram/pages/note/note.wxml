@@ -1,6 +1,13 @@
 <!--miniprogram/pages/note/note.wxml-->
 <view class="search">
-	<mp-searchbar bindselectresult="selectResult" search="{{search}}" />
+	<mp-searchbar
+	 bindselectresult="selectResult"
+	 search="{{search}}"
+	 bindinput="searchInput"
+	 bindfocus="searchStat"
+	 bindcancel="searchCancel"
+	 placeholder="请输入便签标题"
+	/>
 </view>
 
 <view
@@ -9,8 +16,9 @@
  hover-stop-propagation="false"
  wx:for="{{note_list}}"
  wx:key="item"
+ hidden="{{!searchState}}"
+ bindblur="clear"
 >
-
 	<view class="note-list">
 		<navigator
 		 class=""
@@ -30,8 +38,8 @@
 </view>
 <view class="note-add">
 	<view class="" hover-class="none" hover-stop-propagation="false">
-		<navigator url="addnote">
-			新建
+		<navigator url="addnote" class="navi-add">
+			<icon class="t-icon t-icon-zengjia" size="23" color="" />
 		</navigator>
 	</view>
 </view>

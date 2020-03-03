@@ -12,7 +12,7 @@
 		/>
 		<view class="userinfo-nickname-wrapper">
 
-			你是老师
+			你好
 
 		</view>
 	</view>
@@ -24,14 +24,14 @@
 	</view>
 	<!-- 课件 -->
 	<view>
-		<navigator url="../../pages/ppts/ppts">
+		<navigator url="../../pages/ppts/ppts?menuLevel=0">
 			<text>课件</text>
 		</navigator>
 	</view>
 
 	<!-- 重难点 -->
 	<view>
-		<navigator url="../../pages/point/point">
+		<navigator url="../../pages/point/point?menuLevel=0">
 			<text>重难点</text>
 		</navigator>
 	</view>

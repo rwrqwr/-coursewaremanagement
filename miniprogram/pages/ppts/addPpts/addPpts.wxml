@@ -22,7 +22,9 @@
 		 wx:key="i"
 		>
 			{{item.name}}
+			添加描述：
 			<input class="" name="d{{num}}" type="text" />
+			<switch name="sh{{num}}" />
 		</view>
 		<button form-type="submit">
 			确定

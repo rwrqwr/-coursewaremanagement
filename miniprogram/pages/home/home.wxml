@@ -1,34 +1,40 @@
 <!--miniprogram/pages/home/home.wxml-->
-<view class="search">
-  <view class="df search_arr">
-    <icon class="searchcion" size='16' type='search'></icon>
-    <input class="sousuo" disabled placeholder="搜索" bindtap='search' />
-  </view>
-</view>
 <view class=" img-pos page-section page-section-spacing swiper">
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{background}}" wx:key="*this">
-      <swiper-item>
-        <image src="{{item}}"></image>
-      </swiper-item>
-    </block>
-  </swiper>
+	<swiper
+	 indicator-dots="{{indicatorDots}}"
+	 autoplay="{{autoplay}}"
+	 interval="{{interval}}"
+	 duration="{{duration}}"
+	>
+		<block wx:for="{{background}}" wx:key="*this">
+			<swiper-item>
+				<image src="{{item}}" />
+			</swiper-item>
+		</block>
+	</swiper>
 </view>
 <view class="menu">
-  <view class="menu-det" wx:for="{{menu}}" wx:key="item" bindtap="pagejump" data-id="{{item.id}}">
-    <image class="menu-img" src="{{item.img}}"></image>
-    <text>{{item.text}}</text>
-  </view>
+	<view
+	 class="menu-det"
+	 wx:for="{{menu}}"
+	 wx:key="item"
+	 bindtap="pagejump"
+	 data-id="{{item.id}}"
+	>
+		<image class="menu-img" src="{{item.img}}" />
+		<text>{{item.text}}</text>
+	</view>
 </view>
 <view class="menu2">
-  <view class="menu2-det">
-    <view>
-      <text>Top10 热门教案</text>
-    </view>
-  </view>
-  <view class="menu2-det">
-    <view>
-      <text>Top10 热门课件</text>
-    </view>
-  </view>
+	<view class="menu2-det">
+		<view>
+			<text>Top10 热门教案</text>
+		</view>
+	</view>
+	<view class="menu2-det">
+		<view>
+			<text>Top10 热门课件</text>
+		</view>
+	</view>
 </view>
+

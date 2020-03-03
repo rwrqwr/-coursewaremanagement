@@ -1,2 +1,102 @@
 <!--miniprogram/pages/point/point.wxml-->
 
+<!--miniprogram/pages/ppts/ppts.wxml-->
+
+<view
+ class=""
+ hover-class="none"
+ hover-stop-propagation="false"
+ hidden="{{!searchState}}"
+>
+	<view class="" hover-class="none" hover-stop-propagation="false">
+		<!-- 菜单 -->
+		<view class="menu">
+			<view wx:for="{{menu.menu}}" wx:item:="item" wx:key="*this">
+				<navigator
+				 class=""
+				 url="./point?id={{item.id}}&&menuLevel={{index+1}}"
+				 hover-class="navigator-hover"
+				 open-type="navigateBack"
+				>
+					{{item.name}}/
+				</navigator>
+			</view>
+		</view>
+		<!-- 文件夹 -->
+		<view class="addm" hover-class="none" hover-stop-propagation="false">
+			<input maxlength="20" bindinput="menuinput" value="{{menu.menuName}}" />
+			<view bindtap="addMenu" class="add-menu">
+				<image src="../../images/icon/增加.png" />
+			</view>
+		</view>
+		<view class="list">
+
+			<view class="item" wx:for="{{menu.folder}}" wx:key="*this">
+				<movable-area class="" scale-area="false">
+					<movable-view
+					 out-of-bounds="true"
+					 direction="horizontal"
+					 x="{{item.xmove}}"
+					 inertia="true"
+					 data-productIndex="{{index}}"
+					 bindtouchstart="handleTouchStart"
+					 bindtouchend="handleTouchEnd"
+					 bindchange="handleMovableChange"
+					>
+						<view class="item-det">
+							<navigator
+							 class="navi-item"
+							 target=""
+							 url="./point?id={{item._id}}&&menuLevel={{menu.menuLevel+1}}"
+							 hover-class="navigator-hover"
+							 open-type="navigate"
+							>
+								<view class="navi-view">
+									<icon class="t-icon t-icon-file_icon" size="23" />
+									{{item.menuName}}
+								</view>
+
+							</navigator>
+						</view>
+					</movable-view>
+				</movable-area>
+				<view class="delete-btn" data-id="{{item._id}}" bindtap="handleDeleteProduct">删除</view>
+			</view>
+
+		</view>
+	</view>
+	<view
+	 class=""
+	 hover-class="none"
+	 hover-stop-propagation="false"
+	 wx:for="{{pointList}}"
+	 wx:key="item"
+	 hidden="{{!searchState}}"
+	 bindblur="clear"
+	>
+		<view class="note-list">
+			<navigator
+			 class=""
+			 target=""
+			 url="detail/detail?id={{item._id}}"
+			 hover-class="navigator-hover"
+			 open-type="navigate"
+			>
+				<view class="note-title" hover-class="none" hover-stop-propagation="false">
+					{{item.title}}
+				</view>
+				<view class="note-time" hover-class="none" hover-stop-propagation="false">
+					{{item.createTime}}
+				</view>
+			</navigator>
+		</view>
+	</view>
+	<view class="note-add">
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			<navigator url="addPoint/addPoint?id={{menu.menuId}}" class="navi-add">
+				<icon class="t-icon t-icon-zengjia" size="23" color="" />
+			</navigator>
+		</view>
+	</view>
+</view>
+

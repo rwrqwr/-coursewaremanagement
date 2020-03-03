@@ -1,2 +1,44 @@
 <!--miniprogram/pages/point/addPoint/addPoint.wxml-->
-<text>miniprogram/pages/point/addPoint/addPoint.wxml</text>
+<!--miniprogram/pages/note/addnote.wxml-->
+<view>
+	<form
+	 class=""
+	 report-submit="false"
+	 bindsubmit="sub"
+	 bindreset=""
+	>
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			<input class="" placeholder="标题" name="title" />
+		</view>
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			<view class="toolbar" catchtouchend="format">
+				<i class="iconfont icon-charutupian" catchtouchend="insertImage"></i>
+				<i class="iconfont icon-format-header-2 {{formats.header === 2 ? 'ql-active' : ''}}" data-name="header" data-value="{{2}}" />
+				<i class="iconfont icon-format-header-3 {{formats.header === 3 ? 'ql-active' : ''}}" data-name="header" data-value="{{3}}" />
+				<i class="iconfont icon-zitijiacu {{formats.bold ? 'ql-active' : ''}}" data-name="bold" />
+				<i class="iconfont icon-zitixieti {{formats.italic ? 'ql-active' : ''}}" data-name="italic" />
+				<i class="iconfont icon-zitixiahuaxian {{formats.underline ? 'ql-active' : ''}}" data-name="underline" />
+				<i class="iconfont icon--checklist" data-name="list" data-value="check" />
+				<i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered" />
+				<i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet" />
+			</view>
+			<view class="container" style="height:{{editorHeight}}px;">
+				<editor
+				 id="editor"
+				 class="ql-container"
+				 placeholder="{{placeholder}}"
+				 bindstatuschange="onStatusChange"
+				 bindready="onEditorReady"
+				 name="content"
+				/>
+			</view>
+		</view>
+		<view class="" hover-class="none" hover-stop-propagation="false">
+			<button form-type="submit">
+				确定
+			</button>
+		</view>
+	</form>
+</view>
+
+
